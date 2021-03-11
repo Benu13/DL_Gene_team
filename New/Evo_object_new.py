@@ -5,25 +5,22 @@
 from __future__ import annotations
 import numpy as np
 from New.PolyClass import Polygon
-from numpy import asarray
 from PIL import Image
 import matplotlib.pyplot as plt
-import numexpr as ne
-from random import shuffle
+import random
 
 
 class ImageClass:
-    def __init__(self, im_path: str, max_poly_edges: int = 4, population_size: int = 60):
-        self.original_image = asarray(Image.open(im_path))
-        self.canvas_size = (self.original_image.shape[1], self.original_image.shape[0])
+    def __init__(self, canvas_size: tuple, max_poly_edges: int = 4, polygon_number: int = 50, chromosome=None):
+        self.canvas_size = canvas_size
         self.max_edges = max_poly_edges
         self.created_image = None
-        self.population_size = population_size
-        self.chromosome = [Polygon(self.max_edges, self.canvas_size) for i in range(self.population_size)]
-        self.fitness = None
-
+        self.polygon_number = polygon_number
+        if chromosome is not None:
+            self.chromosome = chromosome
+        else:
+            self.chromosome = [Polygon(self.max_edges, self.canvas_size) for i in range(self.polygon_number)]
         self.get_poly_image()
-        self.fitness_all()
 
     def get_poly_image(self):
         back = Image.new("RGBA", self.canvas_size[0:2], (0, 0, 0, 0))
@@ -39,18 +36,11 @@ class ImageClass:
         plt.imshow(self.created_image)
         plt.show()
 
-    def fitness_all(self):
-        a0 = self.original_image[..., 0]
-        a1 = self.original_image[..., 1]
-        a2 = self.original_image[..., 2]
-        b0 = self.created_image[..., 0]
-        b1 = self.created_image[..., 1]
-        b2 = self.created_image[..., 2]
-        self.fitness = float(ne.evaluate('sum((a0/255-b0/255)**2 + (a1/255-b1/255)**2 + (a2/255-b2/255)**2)'))
-
     def mutate(self):
         pass
 
     def crossover(self, mate: ImageClass):
-        chromo_material = shuffle([self.chromosome] + [mate.chromosome])
-        return chromo_material
+        combined_chromosome = self.chromosome + mate.chromosome
+        chromosome_material = random.sample(combined_chromosome, len(combined_chromosome))
+        return (ImageClass(self.canvas_size, self.max_edges, self.polygon_number, chromosome_material[0:self.polygon_number]),
+                ImageClass(self.canvas_size, self.max_edges, self.polygon_number, chromosome_material[self.polygon_number:]))
