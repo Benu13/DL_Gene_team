@@ -9,7 +9,7 @@ x = ImageClass(I_PATH, 7, 3)
 x.print_poly_image()
 start = time.time()
 fit_vec = []
-
+print('test test')
 
 for i in range(1000):
     x.do_the_evolution()
