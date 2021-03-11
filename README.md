@@ -13,5 +13,6 @@ Jeśli ktoś chce zrobić nowe środowisko bez używania condy to dodałem plik 
 5. teraz w terminalu wpisujemy: pip install -r requirements.txt
 6. Gotowe, dodajemy w konfiguracji ścieżkę do maina, odpalamy i powinno śmigać. 
 
-Obrazek
+# Obrazek
+
 ![alt text](https://user-images.githubusercontent.com/39136856/110666618-c8ab2100-81c9-11eb-8988-dae143ef5ae7.jpg)
