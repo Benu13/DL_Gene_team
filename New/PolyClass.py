@@ -41,10 +41,10 @@ class Polygon:
     def mutate(self):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
         mutation_type = random.uniform(0, 1)
-        if mutation_type < 0.4:
+        if mutation_type < 0.5:
             #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
             self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
-        elif 0.4 <= mutation_type < 0.8:
+        elif 0.5 <= mutation_type < 1:
             coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
             self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
         else:

@@ -8,7 +8,7 @@ from New.PolyClass import Polygon
 from PIL import Image
 import matplotlib.pyplot as plt
 import random
-
+from copy import deepcopy
 
 class ImageClass:
     def __init__(self, canvas_size: tuple, max_poly_edges: int = 4, polygon_number: int = 50, chromosome=None):
@@ -37,10 +37,18 @@ class ImageClass:
         plt.show()
 
     def mutate(self):
-        pass
+        for gene in self.chromosome:
+            raa = random.uniform(0, 1)
+            if raa >= 0.5:
+                gene.mutate()
+        self.get_poly_image()
+        return self
 
     def crossover(self, mate: ImageClass):
-        combined_chromosome = self.chromosome + mate.chromosome
+        combined_chromosome = deepcopy(self.chromosome + mate.chromosome)
         chromosome_material = random.sample(combined_chromosome, len(combined_chromosome))
-        return (ImageClass(self.canvas_size, self.max_edges, self.polygon_number, chromosome_material[0:self.polygon_number]),
-                ImageClass(self.canvas_size, self.max_edges, self.polygon_number, chromosome_material[self.polygon_number:]))
+        kid1 = ImageClass(self.canvas_size, self.max_edges, self.polygon_number,
+                          chromosome_material[0:self.polygon_number])
+        kid2 = ImageClass(self.canvas_size, self.max_edges, self.polygon_number,
+                          chromosome_material[self.polygon_number:])
+        return kid1.mutate(), kid2.mutate()
