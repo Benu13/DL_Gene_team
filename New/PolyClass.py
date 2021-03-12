@@ -7,7 +7,7 @@ from PIL import Image
 from PIL import ImageDraw
 import matplotlib.pyplot as plt
 
-random.seed(314454456)
+random.seed(668554456)
 # poly_gene is a variable which purpose it to represent DNA of our object, specified in form of a list and containing:
 # [no. polynomial edges(e = 1,..n) , Red color, Green color, Blue color, // using RGB color model
 # (X coordinate of vertex with index i = 1, Y coordinate of vertex with index i = 1), ...,
@@ -45,8 +45,11 @@ class Polygon:
             #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
             self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
         elif 0.5 <= mutation_type < 1:
-            coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
-            self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
+            # coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
+            # self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
+            ran_in = random.randint(0, self.poly_gene[0] - 1)
+            self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
+                                          (self.poly_gene[4 + ran_in])[1])
         else:
             for num in range(self.poly_gene[0]):
                 coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
