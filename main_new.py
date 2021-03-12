@@ -5,7 +5,7 @@ from New.Population_new import Population
 import time
 
 I_PATH = "Test_images/test.jpg"
-x = Population(I_PATH, 4, 100, 50)
+x = Population(I_PATH, 4, 60, 40)
 x.print_best_image()
 start = time.time()
 fit_vec = []
