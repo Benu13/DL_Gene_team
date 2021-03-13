@@ -1,5 +1,7 @@
 # Projekcik
 
+! 2 gałęzie - main to co było tydzień temu, develop - to co jest teraz, pracować na develop !
+
 ## Conda
 "conda_spec.txt" to plik z wszystkimi paczkami które miałem na wirtualce condy, jest ich więcej niż potrzeba więc można stworzyć sobie swoje i zainstalować paczki: numpy, matplotlib, pillow, numexpr. Możliwe że o czymś zapomniałem to trzeba będzie doinstalować. 
 Link jak zrobić nowe środowisko condy z wykorzystaniem pliczku: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file
