@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from New.Population_new import Population
 import time
 
-I_PATH = "Test_images/test4.jpg"
-x = Population(I_PATH, 3, 40, 2)
+I_PATH = "Test_images/papa.jpg"
+x = Population(I_PATH, 3, 20, 40)
 x.print_best_image()
 start = time.time()
 fit_vec = []

@@ -6,7 +6,7 @@ import random
 from PIL import Image
 from PIL import ImageDraw
 import matplotlib.pyplot as plt
-
+import copy
 random.seed(668554456)
 # poly_gene is a variable which purpose it to represent DNA of our object, specified in form of a list and containing:
 # [no. polynomial edges(e = 1,..n) , Red color, Green color, Blue color, // using RGB color model
@@ -38,8 +38,6 @@ class Polygon:
                       fill=(self.poly_gene[1], self.poly_gene[2], self.poly_gene[3], 127))
         self.poly_image = poly
 
-    def get_gene(self):
-        return self.poly_gene
 
     def mutate(self):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
@@ -48,11 +46,11 @@ class Polygon:
             #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
             self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
         elif 0.33 <= mutation_type < 0.66:
-            coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
-            self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
-            # ran_in = random.randint(0, self.poly_gene[0] - 1)
-            # self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
-            #                               (self.poly_gene[4 + ran_in])[1])
+            # coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
+            # self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
+            ran_in = random.randint(0, self.poly_gene[0] - 1)
+            self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
+                                          (self.poly_gene[4 + ran_in])[1])
         else:
             for num in range(self.poly_gene[0]):
                 coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
@@ -60,5 +58,4 @@ class Polygon:
         self.make_figure()
 
     def change_gene(self, new_gene):
-        self.poly_gene = new_gene
-        self.make_figure()
+        self.poly_gene = copy.deepcopy(new_gene)

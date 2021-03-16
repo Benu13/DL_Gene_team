@@ -34,7 +34,7 @@ class ImageClass:
     def change_material(self, chromosome):
         i = 0
         for polygon in self.chromosome:
-            polygon.change_gene(chromosome[i].get_gene())
+            polygon.change_gene(chromosome[i].poly_gene)
             i = i + 1
         self.mutate()
 
@@ -49,5 +49,4 @@ class ImageClass:
             if raa >= 0:
                 gene.mutate()
         self.get_poly_image()
-        return self
 
