@@ -31,6 +31,13 @@ class ImageClass:
 
         self.created_image = np.asarray(back)[..., :3]
 
+    def change_material(self, chromosome):
+        i = 0
+        for polygon in self.chromosome:
+            polygon.change_gene(chromosome[i].get_gene())
+            i = i + 1
+        self.mutate()
+
     def print_poly_image(self):
         self.get_poly_image()
         plt.imshow(self.created_image)
@@ -44,11 +51,3 @@ class ImageClass:
         self.get_poly_image()
         return self
 
-    def crossover(self, mate: ImageClass):
-        combined_chromosome = deepcopy(self.chromosome + mate.chromosome)
-        chromosome_material = random.sample(combined_chromosome, len(combined_chromosome))
-        kid1 = ImageClass(self.canvas_size, self.max_edges, self.polygon_number,
-                          chromosome_material[0:self.polygon_number])
-        kid2 = ImageClass(self.canvas_size, self.max_edges, self.polygon_number,
-                          chromosome_material[self.polygon_number:])
-        return kid1.mutate(), kid2.mutate()

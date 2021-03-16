@@ -38,6 +38,9 @@ class Polygon:
                       fill=(self.poly_gene[1], self.poly_gene[2], self.poly_gene[3], 127))
         self.poly_image = poly
 
+    def get_gene(self):
+        return self.poly_gene
+
     def mutate(self):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
         mutation_type = random.uniform(0, 1)
@@ -55,15 +58,6 @@ class Polygon:
                 coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
                 self.poly_gene[4+num] = (coord_xy)
         self.make_figure()
-
-    def mutate_edge(self):
-        ran_in = random.randint(0, self.poly_gene[0] - 1)
-        self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
-                                      (self.poly_gene[4 + ran_in])[1])
-        self.make_figure()
-
-    def mutate_color(self):
-        self.poly_gene[1:4] = random.sample(range(1, 255), 3)
 
     def change_gene(self, new_gene):
         self.poly_gene = new_gene
