@@ -7,8 +7,7 @@ import numpy as np
 from New.PolyClass import Polygon
 from PIL import Image
 import matplotlib.pyplot as plt
-import random
-from copy import deepcopy
+
 
 class ImageClass:
     def __init__(self, canvas_size: tuple, max_poly_edges: int = 4, polygon_number: int = 50, chromosome=None):
