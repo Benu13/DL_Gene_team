@@ -8,6 +8,7 @@ import random
 import copy
 random.seed(668554456)
 
+
 class Population:
     def __init__(self, im_path: str, max_poly_edges: int = 4, population_size: int = 40, polygon_number: int = 50):
         self.original_image = asarray(Image.open(im_path))
@@ -52,3 +53,7 @@ class Population:
     def print_best_image(self):
         one = np.argsort(self.fitness_array)
         self.objects[one[0]].print_poly_image()
+
+    def get_best_image(self):
+        one = np.argsort(self.fitness_array)
+        return self.objects[one[0]].created_image

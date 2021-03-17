@@ -38,7 +38,6 @@ class Polygon:
                       fill=(self.poly_gene[1], self.poly_gene[2], self.poly_gene[3], 127))
         self.poly_image = poly
 
-
     def mutate(self):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
         mutation_type = random.uniform(0, 1)
