@@ -6,8 +6,8 @@ import time
 from PIL import Image
 
 
-I_PATH = "Test_images/test4.jpg"
-x = Population(I_PATH, 3, 40, 2)
+I_PATH = "Test_images/test.jpg"
+x = Population(I_PATH, 6, 20, 10)
 x.print_best_image()
 start = time.time()
 fit_vec = []

@@ -60,7 +60,9 @@ class PopulationClass:
             b1 = poly_cre[..., 1]   # kolor G wielokąta
             b2 = poly_cre[..., 2]   # kolor B wielokąta
 
-            fitness_local = np.int(ne.evaluate('sum((aa0/255-b0/255)**2 + (aa1/255-b1/255)**2 + (aa2/255-b2/255)**2)'))
+            #fitness = np.int(ne.evaluate('sum((aa0-b0)**2 + (aa1-b1)**2 + (aa2-b2)**2)'))
+            size = ne.evaluate('sum(true_cre2)')
+            #print(size)
             #fitness_local = np.int(ne.evaluate('sqrt(fitness_local)'))
             fitness = np.int(ne.evaluate('sum((a0/255-b0/255)**2 + (a1/255-b1/255)**2 + (a2/255-b2/255)**2)'))  # * fitness_local
             #fitness = np.int(ne.evaluate('sqrt(fitness)'))
@@ -78,8 +80,8 @@ class PopulationClass:
         children_list = []
         parents_list = []
         for number in range(int(passing_size/2)):
-            kid1, kid2, kid3, kid4 = self.individuals[sorted_fitness[number*2]].crossover(self.individuals[sorted_fitness[number*2+1]])
-            children_list = children_list + [kid1, kid2, kid3, kid4]
+            kid1, kid2 = self.individuals[sorted_fitness[number*2]].crossover(self.individuals[sorted_fitness[number*2+1]])
+            children_list = children_list + [kid1, kid2]
             parents_list = parents_list + [self.individuals[sorted_fitness[number*2]], self.individuals[sorted_fitness[number*2+1]]]
 
         #self.individuals = parents_list+children_list+self.individuals[passing_size:passing_size+10]
