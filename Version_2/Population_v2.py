@@ -31,18 +31,18 @@ class Population:
             b2 = image.created_image[..., 2]
             self.fitness_array.append(float(ne.evaluate('sum((a0/255-b0/255)**2 '
                                                         '+ (a1/255-b1/255)**2 + (a2/255-b2/255)**2)')))
+
         self.fitness_best = min(self.fitness_array)
 
     def crossover(self, mate1: ImageClass, mate2: ImageClass, looser1: ImageClass, looser2: ImageClass):
         combined_chromosome = mate1.chromosome + mate2.chromosome
         chromosome_material = random.sample(combined_chromosome, len(combined_chromosome))
-        looser1.change_material(chromosome_material[0:self.polygon_number])
-        looser2.change_material(chromosome_material[self.polygon_number:])
+        looser1.change_material(mate1.chromosome)#(chromosome_material[0:self.polygon_number])
+        looser2.change_material(mate2.chromosome)#(chromosome_material[self.polygon_number:])
 
     def do_the_evolution(self, tournament_size: int = 4):
         a = self.objects
         tournaments_number = int(self.population_size/tournament_size)
-        last_tournament = self.population_size % 4
         for i in range(tournaments_number):
             fight_fitness = self.fitness_array[i*tournament_size:i*tournament_size+tournament_size]
             sorted_indices = np.argsort(fight_fitness) + tournament_size*i

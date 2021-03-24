@@ -44,12 +44,13 @@ class Polygon:
         if mutation_type < 0.3:
             #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
             self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
-        elif 0.3 <= mutation_type < 0.8:
-            # coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
-            # self.poly_gene[4 + random.randint(0, self.poly_gene[0]-1)] = (coord_xy)
+        elif 0.3 <= mutation_type < 0.6:
             ran_in = random.randint(0, self.poly_gene[0] - 1)
             self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
                                           (self.poly_gene[4 + ran_in])[1])
+        elif 0.6 <= mutation_type < 0.9:
+            ran_in = random.randint(0, self.poly_gene[0] - 1)
+            self.poly_gene[4 + ran_in] = ((self.poly_gene[4 + ran_in])[0], random.randint(0, self.canvas_size[1]))
         else:
             for num in range(self.poly_gene[0]):
                 coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
