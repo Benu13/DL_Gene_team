@@ -46,6 +46,7 @@ class Population:
     def print_best_image(self):
         one = np.argsort(self.fitness_array)
         self.objects[one[0]].print_poly_image()
+        self.objects[one[1]].print_poly_image()
 
     def get_best_image(self):
         one = np.argsort(self.fitness_array)
