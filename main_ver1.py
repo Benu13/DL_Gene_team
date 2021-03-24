@@ -5,7 +5,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from Original.Population import PopulationClass
+from Version_1.Population import PopulationClass
 import time
 
 

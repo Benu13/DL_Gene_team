@@ -1,19 +1,19 @@
 # Still in progres, not working
 
 import matplotlib.pyplot as plt
-from New.Population_new import Population
+from Version_2.Population_new import Population
 import time
 from PIL import Image
 
 
-I_PATH = "Test_images/test.jpg"
-x = Population(I_PATH, 6, 20, 10)
+I_PATH = "Test_images/test4.jpg"
+x = Population(I_PATH, 3, 4, 2)
 x.print_best_image()
 start = time.time()
 fit_vec = []
 plot = 0
 
-for i in range(2000):
+for i in range(20000):
     x.do_the_evolution()
     fit_vec.append(x.fitness_best)
     if i%100 == 0:

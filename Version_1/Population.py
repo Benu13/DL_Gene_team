@@ -1,10 +1,10 @@
 # Class implementation of population
-# Original image will be necessary for individual polygon evaluation, at least in this idea.
+# Version_1 image will be necessary for individual polygon evaluation, at least in this idea.
 # Using colors and checking how well created polygon align with corresponding fragments on original image we can see how
 # good it's genes are.
 
 import numpy as np
-from Original.Evo_object import Polygon
+from Version_1.Evo_object import Polygon
 from numpy import asarray
 from PIL import Image
 import matplotlib.pyplot as plt

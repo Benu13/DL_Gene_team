@@ -2,7 +2,7 @@
 from numpy import asarray
 from PIL import Image
 import numexpr as ne
-from New.Evo_object_new import ImageClass
+from Version_2.Evo_object_new import ImageClass
 import numpy as np
 import random
 import copy

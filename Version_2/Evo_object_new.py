@@ -4,9 +4,11 @@
 
 from __future__ import annotations
 import numpy as np
-from New.PolyClass import Polygon
+from Version_2.PolyClass import Polygon
 from PIL import Image
 import matplotlib.pyplot as plt
+import random
+random.seed(213123)
 
 
 class ImageClass:
@@ -44,8 +46,8 @@ class ImageClass:
 
     def mutate(self):
         for gene in self.chromosome:
-            raa = 1 #random.uniform(0, 1)
-            if raa >= 0:
+            raa = random.uniform(0, 1)
+            if raa >= 0.5:
                 gene.mutate()
         self.get_poly_image()
 
