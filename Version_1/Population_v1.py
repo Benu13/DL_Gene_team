@@ -4,7 +4,7 @@
 # good it's genes are.
 
 import numpy as np
-from Version_1.Evo_object import Polygon
+from Version_1.Evo_object_v1 import Polygon
 from numpy import asarray
 from PIL import Image
 import matplotlib.pyplot as plt

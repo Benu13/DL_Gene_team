@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 import numpy as np
-from Version_2.PolyClass import Polygon
+from Version_2.Polygon_v2 import Polygon
 from PIL import Image
 import matplotlib.pyplot as plt
 import random
