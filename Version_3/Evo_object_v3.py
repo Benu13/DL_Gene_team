@@ -43,7 +43,7 @@ class ImageClass:
     def mutate(self):
         for gene in self.chromosome:
             raa = random.uniform(0, 1)
-            if raa >= 0.5:
+            if raa >= 0:
                 gene.mutate()
         self.get_poly_image()
 

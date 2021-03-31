@@ -37,8 +37,11 @@ class Population:
     def crossover(self, mate1: ImageClass, mate2: ImageClass, looser1: ImageClass, looser2: ImageClass):
         combined_chromosome = mate1.chromosome + mate2.chromosome
         chromosome_material = random.sample(combined_chromosome, len(combined_chromosome))
-        looser1.change_material(mate1.chromosome)#(chromosome_material[0:self.polygon_number])
-        looser2.change_material(mate2.chromosome)#(chromosome_material[self.polygon_number:])
+        looser1.change_material(mate1.chromosome)
+        looser2.change_material(mate2.chromosome)
+
+        #looser1.change_material(chromosome_material[0:self.polygon_number])
+        #looser2.change_material(chromosome_material[self.polygon_number:])
 
     def do_the_evolution(self, tournament_size: int = 4):
         a = self.objects

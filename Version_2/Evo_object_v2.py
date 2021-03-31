@@ -44,10 +44,12 @@ class ImageClass:
         plt.imshow(self.created_image)
         plt.show()
 
-    def mutate(self):
+    def mutate(self, balance=0):
         for gene in self.chromosome:
             raa = random.uniform(0, 1)
             if raa >= 0.5:
-                gene.mutate()
+                gene.mutate_color()
+            #else:
+                gene.mutate_apex()
         self.get_poly_image()
 

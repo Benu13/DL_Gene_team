@@ -38,24 +38,49 @@ class Polygon:
                       fill=(self.poly_gene[1], self.poly_gene[2], self.poly_gene[3], 127))
         self.poly_image = poly
 
-    def mutate(self):   # Implementing 3 types of possible mutation in individual.
+    def mutate_color(self, threshold=0.5):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
-        mutation_type = random.uniform(0, 1)
-        if mutation_type < 0.3:
-            #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
-            self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
-        elif 0.3 <= mutation_type < 0.6:
-            ran_in = random.randint(0, self.poly_gene[0] - 1)
-            self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
-                                          (self.poly_gene[4 + ran_in])[1])
-        elif 0.6 <= mutation_type < 0.9:
-            ran_in = random.randint(0, self.poly_gene[0] - 1)
-            self.poly_gene[4 + ran_in] = ((self.poly_gene[4 + ran_in])[0], random.randint(0, self.canvas_size[1]))
-        else:
-            for num in range(self.poly_gene[0]):
-                coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
-                self.poly_gene[4+num] = (coord_xy)
+        # mutation_type = random.uniform(0, 1)
+        # color change mutation
+        if random.uniform(0, 1) < threshold:
+            self.change_red()
+        elif random.uniform(0, 1) < threshold:
+            self.change_green()
+        elif random.uniform(0, 1) < threshold:
+            self.change_blue()
+
+    def mutate_apex(self, threshold=0.5):
+        # apex coord change mutation
+        if random.uniform(0, 1) < threshold:
+            self.change_x_r_ape()
+        elif random.uniform(0, 1) < threshold:
+            self.change_y_r_ape()
+        # elif random.uniform(0, 1) < threshold:
+        #     for num in range(self.poly_gene[0]):
+        #         coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
+        #         self.poly_gene[4+num] = (coord_xy)
         self.make_figure()
+
+    def change_red(self):
+        self.poly_gene[1] = random.randint(1, 255)
+
+    def change_green(self):
+        self.poly_gene[2] = random.randint(1, 255)
+
+    def change_blue(self):
+        self.poly_gene[3] = random.randint(1, 255)
+
+    def change_x_r_ape(self):
+        ran_in = random.randint(0, self.poly_gene[0] - 1)
+        self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]), (self.poly_gene[4 + ran_in])[1])
+
+    def change_y_r_ape(self):
+        ran_in = random.randint(0, self.poly_gene[0] - 1)
+        self.poly_gene[4 + ran_in] = ((self.poly_gene[4 + ran_in])[0], random.randint(0, self.canvas_size[1]))
+
+    def change_xy_ape(self, num):
+        coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
+        self.poly_gene[4 + num] = (coord_xy)
 
     def change_gene(self, new_gene):
         self.poly_gene = copy.deepcopy(new_gene)

@@ -6,14 +6,14 @@ import time
 from PIL import Image
 
 
-I_PATH = "Test_images/test.jpg"
-x = Population(I_PATH, 4, 8, 10)
+I_PATH = "Test_images/catlol.jpg"
+x = Population(I_PATH, 5, 16, 30)
 x.print_best_image()
 start = time.time()
 fit_vec = []
 plot = 0
 
-for i in range(2000):
+for i in range(20000):
     x.do_the_evolution()
     fit_vec.append(x.fitness_best)
     if i%100 == 0:
