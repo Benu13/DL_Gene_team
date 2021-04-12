@@ -25,7 +25,7 @@ class Polygon:
         else:
             no_edges = random.randint(3, max_edges)
             self.poly_gene = [None] * 4
-            self.poly_gene[0:4] = [no_edges] + random.sample(range(1, 255), 3)
+            self.poly_gene[0:4] = [no_edges] + [0, 0, 0]#random.sample(range(1, 255), 3)
             for num in range(no_edges):
                 coord_xy = (random.randint(0, canvas_size[0]), random.randint(0, canvas_size[1]))
                 self.poly_gene = self.poly_gene + [coord_xy]
