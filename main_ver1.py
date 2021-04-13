@@ -10,13 +10,13 @@ import time
 
 
 I_PATH = "Test_images/test4.jpg"
-x = PopulationClass(I_PATH,4,4)
+x = PopulationClass(I_PATH,4,12)
 x.print_poly_image()
 x.print_values()
 start = time.time()
 fit_vec = []
 fitt = 100000000
-for i in range(80000):
+for i in range(2000):
     x.do_the_evolution()
     if i%100 == 0:
         end = time.time()
