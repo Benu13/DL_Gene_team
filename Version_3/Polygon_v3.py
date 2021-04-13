@@ -15,7 +15,7 @@ class Polygon:
         else:
             no_edges = random.randint(3, max_edges)
             self.poly_gene = [None] * 4
-            self.poly_gene[0:4] = [no_edges] + random.sample(range(1, 255), 3)
+            self.poly_gene[0:4] = [no_edges] + [0, 0, 0] #random.sample(range(1, 255), 3)
             for num in range(no_edges):
                 coord_xy = (random.randint(0, canvas_size[0]), random.randint(0, canvas_size[1]))
                 self.poly_gene = self.poly_gene + [coord_xy]
@@ -31,17 +31,18 @@ class Polygon:
     def mutate(self):   # Implementing 3 types of possible mutation in individual.
         # The object can mutate either it's color or it's vertexes placement. The dice will decide.
         mutation_type = random.uniform(0, 1)
-        if mutation_type < 0.3:
+        if random.uniform(0, 1) < 0.5:
             #self.poly_gene[1:4] = random.sample(range(1, 255), 3)
             self.poly_gene[random.randint(1, 3)] = random.randint(1, 255)
-        elif 0.3 <= mutation_type < 0.6:
+        if random.uniform(0, 1) < 0.5:
             ran_in = random.randint(0, self.poly_gene[0] - 1)
             self.poly_gene[4 + ran_in] = (random.randint(0, self.canvas_size[0]),
                                           (self.poly_gene[4 + ran_in])[1])
-        elif 0.6 <= mutation_type < 0.9:
+        if random.uniform(0, 1) < 0.5:
             ran_in = random.randint(0, self.poly_gene[0] - 1)
             self.poly_gene[4 + ran_in] = ((self.poly_gene[4 + ran_in])[0], random.randint(0, self.canvas_size[1]))
-        else:
+
+        if random.uniform(0, 1) < 0.3:
             for num in range(self.poly_gene[0]):
                 coord_xy = (random.randint(0, self.canvas_size[0]), random.randint(0, self.canvas_size[1]))
                 self.poly_gene[4+num] = (coord_xy)
