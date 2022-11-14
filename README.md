@@ -1,6 +1,6 @@
 # Projekcik
 
-!Pracować na develop!
+Projekt programu wykorzystującego algorytm ewolucyjny do odwzorowywania zadanego przez użytkownika obrazu z wykorzystaniem wyewoluowanych z pomocą algorytmu kształtów. Działa dla prostych obrazów.
 
 ## Conda
 "conda_spec.txt" to plik z wszystkimi paczkami które miałem na wirtualce condy, jest ich więcej niż potrzeba więc można stworzyć sobie swoje i zainstalować paczki: numpy, matplotlib, pillow, numexpr. Możliwe że o czymś zapomniałem to trzeba będzie doinstalować. 
